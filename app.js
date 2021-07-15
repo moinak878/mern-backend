@@ -6,7 +6,9 @@ const port = process.env.PORT || 8000;
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-const authRoutes=require("./routes/auth")
+//My routes
+const authRoutes = require("./routes/auth")
+const userRoutes = require("./routes/user")
 
 //DB Connection
 mongoose.connect(process.env.DATABASE,
@@ -24,7 +26,8 @@ app.use(cookieParser())
 app.use(cors())
 
 //Routes 
-app.use("/api",authRoutes)
+app.use("/api", authRoutes)
+app.use("/api",userRoutes)
 //app.get('/', function (req, res) {res.send('Hello World!')}); // This will serve your request to '/'.
 
 
