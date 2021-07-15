@@ -1,20 +1,20 @@
 const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema
 
-const ProductCartSchema = new mongoose.Schema({
+const productCartSchema = new mongoose.Schema({
     product: {
         type: ObjectId,
-        ref : "Product"
+        ref: "Product"
     },
     name: String,
     count: { type: Number },
-    price :{ type: Number } 
+    price: { type: Number }
 })
 
 const ProductCart=mongoose.model("ProductCart",productCartSchema)
 
 var orderSchema = new mongoose.Schema({
-    products: [ProductCartSchema],
+    products: [productCartSchema],
     transaction_id: {},
     amount: Number,
     address: String,
