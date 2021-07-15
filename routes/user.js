@@ -7,6 +7,8 @@ router.param("userId", getUserById)
 
 router.get("/user/:userId", isSignedIn, isAuthenticated, getUser)
 
-router.put("/user/:userid",isSignedIn,isAuthenticated,updateUser)
+router.put("/user/:userid", isSignedIn, isAuthenticated, updateUser)
+
+router.get("/order/user/:userid",isSignedIn, isAuthenticated,userPurchaseList)
 
 module.exports = router;
