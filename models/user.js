@@ -46,7 +46,7 @@ userSchema.virtual("password")  //virtual field password
     })
     .get(function () {
     return this._password
-})
+    })
 
 userSchema.methods = {
     authenticate: function (plainpassword) {
