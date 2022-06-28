@@ -21,7 +21,9 @@ mongoose.connect(process.env.DATABASE,
         useCreateIndex:true
     }).then(() => {
         console.log('DB CONNECTED');
-    })
+    }).catch( (e)=>(
+        console.log(`DB CONNECTION FAILED : ${e}`)
+    ));
 
 //Middlewares
 app.use(express.json()) //body parser is built into express now 
