@@ -54,7 +54,7 @@ exports.createProduct = (req, res) => {
 
 //read
 exports.getProduct = (req, res) => {
-	req.product.photo = undefined;
+	req.product.photo = undefined; // image not served in res
 	return res.json(req.product);
 };
 
@@ -138,10 +138,10 @@ exports.getAllUniqueCategories = (req, res) => {
 //middleware
 exports.photo = (req, res, next) => {
 	if (req.product.photo.data) {
-		res.set("Content-type", req.product.photo.contentType);
+		res.set("Content-Type", req.product.photo.contentType);
 		return res.send(req.product.photo.data);
-		next();
 	}
+	next();
 };
 
 exports.updateStock = (req, res, next) => {
