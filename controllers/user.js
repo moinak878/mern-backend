@@ -72,7 +72,7 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
     let purchases = []
     req.body.order.products.forEach(product => {
         purchases.push({
-            __id: product._id,
+            _id: product._id,
             name: product.name,
             description: product.description,
             category: product._category,
@@ -81,6 +81,7 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
             transaction_id: req.body.order.transaction_id
         })
     })
+    // store in DB
     User.findOneAndUpdate(
         { _id: req.profile._id },
         { $push: { purchases } },
@@ -90,6 +91,8 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
                 return res.status(400).json({
                     error: "unable to save purchases"
                 })
+            // not waiting for entire fn to complete
+            // putting next here to tranfer control if no error is raised
             next();
         }
     )
