@@ -14,6 +14,7 @@ exports.getUserById = (req, res, next, id) => {
 
 
 exports.getUser = (req, res) => {
+    // made application secure
     req.profile.salt = undefined; 
     req.profile.encry_password = undefined;
     req.profile.createdAt = undefined;
@@ -44,10 +45,10 @@ exports.updateUser = (req, res) => {
                 return res.status(400).json({
                     error: "Update not successful"
                 })
-            user.profile.salt = undefined;
-            user.profile.encry_password = undefined;
-            user.profile.createdAt = undefined;
-            user.profile.updatedAt = undefined;
+            user.salt = undefined;
+            user.encry_password = undefined;
+            user.createdAt = undefined;
+            user.updatedAt = undefined;
             return res.json(user)
         }
     )
@@ -56,7 +57,7 @@ exports.updateUser = (req, res) => {
 
 exports.userPurchaseList = (req, res) => {
     Order.find({ user: req.profile._id })
-        .populate("user", "__id name")
+        .populate("user", "_id name")
         .exec((err, order) => {
             if (err)
                 return res.status(400).json(
