@@ -1,5 +1,5 @@
 const User = require("../models/user")
-const Order = require("../models/order")
+const {Order} = require("../models/order")
 
 exports.getUserById = (req, res, next, id) => {
     User.findById(id).exec((err, user) => {
@@ -41,7 +41,7 @@ exports.updateUser = (req, res) => {
         { $set: req.body },
         { new: true, useFindAndModify: false },
         (err, user) => {
-            if (err || !users)
+            if (err || !user)
                 return res.status(400).json({
                     error: "Update not successful"
                 })
