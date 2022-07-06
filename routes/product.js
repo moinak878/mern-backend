@@ -42,7 +42,7 @@ router.put(
 	isAdmin,
 	updateProduct
 );
-router.get("/product/all", getAllProducts);
+router.get("/products", getAllProducts);
 router.get("/product/categories", getAllUniqueCategories);
 
 module.exports = router;
